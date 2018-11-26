@@ -1,0 +1,81 @@
+E_n=E_o      e^(\lambda_n * T)
+
+U(T): sol.exacta
+U^(n): sol. numerica
+E1^(n)= U(T)-U1^(n)= delta_T^(q) * k
+
+E2^(n)= U(T)-U2^(2n)= (delta_T/2)^(q) * k
+
+k=(U1^(n)-U2^(2n))/((1-(1/2)^q)*delta_T^q)
+
+E1^n=(U1^(2n)-U2^(2n))/(1-(1/2)^q)
+____________________________________________________________________
+MATH DOMAIN <---------------------> PHYSICAL DOMAIN
+dU/dt = F(U;t)                      type body
+U0                                       real:: mass
+                                         real:: r(3), v(3)
+                                         real:: drdt(3), dvdt(3)
+                                    end type
+                                    
+                                    
+type, extends(body):: satellite
+    real:: engine
+end type
+
+type galaxy
+    type(body), allocatable :: Planet(:)
+    contains
+        procedure :: ini  =>  initialization
+        procedure :: acceleration  => acceleration-planet
+end type   
+     
+type(body) :: planet
+      planter % mass = 28
+      
+ ----------------------------------------------------------     
+      CODIGO PYTHON
+________________________________________________________________
+class body
+    def_ _unit_ _(self,m,r,v,a)
+              self.mass=m
+              self.r=r
+              self.v=v
+              self.drdt=v
+              self.dvdt=a
+ planet = body(m0,r0,v0,a0)
+ planet.r = pato
+ 
+  ----------------------------------------------------------     
+      CODIGO MATLAB
+________________________________________________________________
+    
+  classdef body
+      properties
+          mass
+          r
+          v
+          drdt
+          dvdt
+      end
+  end
+  planet=body
+  planet.r=8
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
