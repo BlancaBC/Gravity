@@ -1,0 +1,7 @@
+Algoritmo
+  1) Dar un dominio temporal delta_t (cte)
+  2) Elegir fisica  ---> Nbody-problem (actual F)
+  3) integrar problema de Cauchy ---> Cauchy-problem (t,U,F temp_scheme---> U(:,:) )
+  4) Dominio temporal delta_t / 2 (cte) 
+  5) Error mediante Richardson
+------------------------------------------------
