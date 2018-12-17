@@ -19,7 +19,7 @@ end interface
 ______________________________________________________INTEREFACE CAUCHY___________________________________________________________
 
 subroutine Cauchy-Problem(Time-domain, Differential_operator,Temporal_scheme, Solution)
-    real, inten(in) :: Time-domain(:)
+    real, intent(in) :: Time-domain(:)
     procedure (ODES) :: Differential_operator
     procedure, optional (scheme) :: Temporal_scheme
     real, intent(inout) ::  Solution (:,:) ! temporal steps x # of variables
