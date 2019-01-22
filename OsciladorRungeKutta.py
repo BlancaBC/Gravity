@@ -34,7 +34,7 @@ Utotal[0:2] = U
     
 for i in range(numPasos):
         
-    U = Rg.Euler(step,oscilador,U)
+    U = Rg.Runge_Kutta_2_orden(step,oscilador,U)
     Utotal[i*2:i*2+2] = U
     
     X[i] = Utotal[i*2]
