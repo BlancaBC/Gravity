@@ -9,7 +9,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as mlp
 from scipy.integrate import odeint
-import RungeKutta as Rg
+import Integradores as Rg
 
 #Definición del paso de integración 
 numPasos=10000
@@ -34,7 +34,7 @@ Utotal[0:2] = U
     
 for i in range(numPasos):
         
-    U = Rg.Runge_Kutta_2_orden(step,oscilador,U)
+    U = Rg.Euler(step,oscilador,U)
     Utotal[i*2:i*2+2] = U
     
     X[i] = Utotal[i*2]
