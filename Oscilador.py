@@ -1,36 +1,40 @@
-
-# resolución oscilador armónico
-
 import numpy as np
 import math
 import matplotlib.pyplot as mlp
+from scipy.integrate import odeint
 
-numPasos=1000
+#Oscilador armónico 
+#odeint como integrador
+
+#Definición del paso de integración 
+numPasos=10000
 step=20*math.pi/numPasos
 
-#B=inv(I-step·A)
-B=(1/(1+step**2))*np.matrix([[1,step],[-step,1]])
-U=np.zeros((2*numPasos,1))
-X=np.zeros((numPasos,1))
-V=np.zeros((numPasos,1))
-U[0,0]=1
-U[1,0]=0
-X[0,0]=1
-V[0,0]=0
+#Condiciones iniciales
+X0=1
+V0=0
 
-for i in range(numPasos-1):
-    Un=B*np.matrix([[U[2*i,0]],[U[2*i+1,0]]])
-    U[2*i+2,0]=Un[0,0]
-    X[i+1]=Un[0,0]
-    U[2*i+3,0]=Un[1,0]
-    V[i+1]=Un[1,0]
+#Integrador odeint
+def func(y,t):
+    r=y[0]
+    v=y[1]
+    return [v, -r]
 
-Dist=math.sqrt(U[2*numPasos-1,0]**2+U[2*numPasos-2,0]**2)
-print(Dist)
-mlp.plot(X,V)
+y0=[X0,V0]
+t=np.linspace(0.0,1000.0,numPasos)
+U=odeint(func,y0,t)
+
+#Gráficas de resultados
+mlp.plot(t[:500],U[:500,0])
+mlp.title("Óscilador")
+mlp.xlabel("t")
+mlp.ylabel("X(t)")
+mlp.grid()
+mlp.show()
+
+mlp.plot(U[:500,0],U[:500,1])
 mlp.title("Órbita")
 mlp.xlabel("X(t)")
 mlp.ylabel("V(t)")
 mlp.grid()
 mlp.show()
-
