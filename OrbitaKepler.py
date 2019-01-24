@@ -5,8 +5,8 @@ from numpy.linalg import norm
 
 #Definición de constantes
 G=1.0
-m1=1.0
-m2=0.001
+m1=1
+m2=1
 mu=G*(m1+m2)
 N=10000
 DeltaT=1000/N
