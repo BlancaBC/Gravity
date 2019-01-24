@@ -7,7 +7,7 @@ from scipy.integrate import odeint
 numPasos=10000
 step=20*math.pi/numPasos
 
-# Matriz inversa B
+# Matriz A
 A=np.matrix([[0,1],[-1,0]])
 
 # Definición de vectores y condiciones iniciales
@@ -19,7 +19,7 @@ U[1,0]=0
 X[0,0]=1
 V[0,0]=0
 
-# Integrador de Euler inverso
+# Integrador de Euler
 for i in range(numPasos-1):
     Un=A*np.matrix([[U[2*i,0]],[U[2*i+1,0]]])
     U[2*i+2,0]=Un[0,0]

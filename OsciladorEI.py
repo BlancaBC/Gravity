@@ -11,7 +11,7 @@ from scipy.integrate import odeint
 numPasos=1000
 step=20*math.pi/numPasos
 
-#M Matriz inversa B
+# Matriz inversa B
 B=(1/(1+step**2))*np.matrix([[1,step],[-step,1]])
 
 # Definición de vectores y condiciones iniciales
