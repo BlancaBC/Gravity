@@ -14,7 +14,7 @@ plot(x1,y1)
 plot(x2,y2)
 plot(0,0,'o','markersize',6,'markerfacecolor','r') %centro masas
 
-%posición de los cuerpos
+%posiciÃ³n de los cuerpos
 pos=150;
 line([x1(pos),x2(pos)],[y1(pos),y2(pos)],'lineStyle','--', 'color','k')
 plot(x1(pos),y1(pos),'o','markersize',4,'markerfacecolor','k')
