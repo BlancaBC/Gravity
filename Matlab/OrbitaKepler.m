@@ -4,32 +4,21 @@ m1=1.0;
 m2=0.001;
 mu=G*(m1+m2);
 N=10000;
-DeltaT=1000/N;
-t=linspace(0.0,1000.0,N);
+t=linspace(0.0,100.0,N);
 
 %Condiciones iniciales
-y0=[1.0, 0.0, 0.0, 1.2];
+y0=[1.0, 0.0, 0.0, 1.0];
 
-% Integracion con 'ode45'                                                                                                 
-[t,solucion]=ode45(@func,t,y0);
-r=solucion(:, 1:2);     % vector de posición                                                                      
-v=solucion(:, 2:end) ;    % vector de velocidad   
+% Integracion con 'ode45' 
+orbit=@(t,U)[U(3);U(4);-mu*U(1)/sqrt(U(1)^2+U(2)^2);-mu*U(2)/sqrt(U(1)^2+U(2)^2)];
+[t,U]=ode45(orbit,t,y0);
+
+r=U(:, 1:2);     % vector de posición                                                                      
+v=U(:, 3:end);  % vector de velocidad   
 
 %gráficos
 figure
-plot(r(end,0),r(end,1))
+plot(r(:,1),r(:,2))
 xlabel('x')
 ylabel('y')
 title('Órbita Kepleriana')
-
-figure
-plot(r(end,0),v(end,0))
-xlabel('x')
-ylabel('v_x')
-title('Velocidad orbital')
-
-figure
-plot(r(end,1),v(end,1))
-xlabel('y')
-ylabel('v_y')
-title('Velocidad orbital')

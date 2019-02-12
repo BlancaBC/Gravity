@@ -4,25 +4,16 @@ numPasos=10000;
 paso_temp=20*pi/numPasos;
 
 %Condiciones iniciales
-X0=1;
-V0=0;
-
-U = [X0;V0];
-Utotal = zeros(numPasos*2,1);
-F=oscilador(U);
-X = zeros(numPasos,1);
-V = zeros(numPasos,1);
+Ut = [1;0];
+U = zeros(numPasos*2,1);
 
 for i = 1: numPasos
-    F=oscilador(U);
-    U = Runge_Kutta_2_orden(paso_temp,F,U);
-    Utotal(i*2-1:i*2) = U;
-    
-    X(i) = Utotal(i*2-1);
-    V(i) = Utotal(i*2);
+    F=oscilador(Ut);
+    Ut = Runge_Kutta_2_orden(paso_temp,F,Ut);
+    U(i*2-1:i*2) = Ut;
 end
 
-plot(X,V)
+plot(U(1:2:numPasos),U(2:2:numPasos))
 title('Órbita')
 xlabel('X(t)')
 ylabel('V(t)')
