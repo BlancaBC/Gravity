@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 22 22:24:27 2019
-
-@author: igna9
-"""
 
 import numpy as np
 import math
@@ -33,7 +27,10 @@ Utotal[0:2] = U
 
     
 for i in range(numPasos):
-        
+    
+    #Aquí se puede elegir el integrador deseado de los
+    #disponibles en la subrutina integradores
+    
     U = Rg.Runge_Kutta_2_orden(step,oscilador,U)
     Utotal[i*2:i*2+2] = U
     
