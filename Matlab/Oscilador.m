@@ -1,5 +1,5 @@
 clear, clc
-%Definición del paso de integración 
+%DefiniciÃ³n del paso de integraciÃ³n 
 numPasos=10000;
 paso_temp=20*pi/numPasos;
 
@@ -8,13 +8,12 @@ Ut = [1;0];
 U = zeros(numPasos*2,1);
 
 for i = 1: numPasos
-    F=oscilador(Ut);
-    Ut = Runge_Kutta_2_orden(paso_temp,F,Ut);
+    Ut = Runge_Kutta_2_orden(paso_temp,@oscilador,Ut);
     U(i*2-1:i*2) = Ut;
 end
 
 plot(U(1:2:numPasos),U(2:2:numPasos))
-title('Órbita')
+title('Ã“rbita')
 xlabel('X(t)')
 ylabel('V(t)')
 grid on
