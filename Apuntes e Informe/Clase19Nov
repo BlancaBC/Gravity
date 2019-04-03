@@ -1,0 +1,68 @@
+INTERFACE - necesario en fortran y otros lenguajes tipados
+
+SOFTWARE SPECIFICATION
+
+
+_____________________________________________
+
+dU/dt=F(U,t)    U(0)=U0
+
+las entradas en el problema de Cauchy son el Differential operator, C.I., esquema numerico y time-domain, y la salida es la solucion. 
+_________________________________________________________EJEMPLO INTERFACE______________________________________________________________
+
+abstract interface
+real function ODES(U,t) result(F)
+    real, intent(in):: U(:),t
+    real :: F(size(U))
+  end function
+end interface
+______________________________________________________INTEREFACE CAUCHY___________________________________________________________
+
+subroutine Cauchy-Problem(Time-domain, Differential_operator,Temporal_scheme, Solution)
+    real, intent(in) :: Time-domain(:)
+    procedure (ODES) :: Differential_operator
+    procedure, optional (scheme) :: Temporal_scheme
+    real, intent(inout) ::  Solution (:,:) ! temporal steps x # of variables
+_________________________________________________________________
+    -------------------->  Temporal_scheme  ----->
+    entra U1, t1, t2, F                     sale U2
+__________________________________________________________________
+    abstract interface
+       subroutine Temporal_scheme (F,t1,t2,U1,U2)
+            procedure (ODE) :: F
+            real, intent(in) :: t1,t2, U1(:)
+            real,intent(out) :: U2(:)
+       end subroutine
+    end interface
+_______________________________________________________________________________________________________________
+  subroutine Euler(F, t1,t2,U1,U2)
+    procedure(ODES) :: F
+    real, intent(in) :: t1,t2,U1(:)
+    real, intent(out) :: U2(:)
+    U2=U1+(t2-t1)*F(U1,t1)
+  end subroutine
+  ____________________________________________________________________________________________________________________
+  
+  call Cauchy-Problem(Time-domain=Time, Differential_operator=Kepler, Solution=U)
+  
+  Program test_Kepler
+      use ________
+      integer, parameter :: N = 100
+      real :: Time (0:N)
+      real :: U(0:N,4)
+      U(0,:)=[1,0,0,1]
+      call Cauchy-Problem(_____)
+     contains _______
+   end
+   
+   
+function Kepler(U,t) result (F)
+     real,intent(in) :: U(:),t
+     real F(size(U))
+     
+    real :: r(2), drdt(2)
+        r=U(1:2);  drdt=U(3:4)
+        F= [drdt, -r/norm(r)**3]
+end function 
+  
+Time =[(t0 + (tf-t0)*(i/N), i=0, N)
