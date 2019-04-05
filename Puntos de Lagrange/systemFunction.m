@@ -1,7 +1,6 @@
-function [F]=systemFunction(~,U)
+function [F]=systemFunction(~,U,mu)
 
 % U(1)=x  U(2)=y   U(3)=z   U(4)=x'  U(5)=y'   U(6)=z'
-mu=0.0122;
 d=sqrt((U(1)+mu)^2+U(2)^2+U(3)^2);
 r=sqrt((U(1)-1+mu)^2+U(2)^2+U(3)^2);
 

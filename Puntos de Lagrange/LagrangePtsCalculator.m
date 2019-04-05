@@ -1,7 +1,11 @@
 function [L]=LagrangePtsCalculator(mu,vars)
-eqns=[vars(1)-(1-mu)*(vars(1)+mu)/((vars(1)+mu)^2+vars(2)^2+vars(3)^2)^(3/2)-mu*(vars(1)-1+mu)/((vars(1)-1+mu)^2+vars(2)^2+vars(3)^2)^(3/2)==0
-     vars(2)-(1-mu)*vars(2)/((vars(1)+mu)^2+vars(2)^2+vars(3)^2)^(3/2)-mu*vars(2)/((vars(1)-1+mu)^2+vars(2)^2+vars(3)^2)^(3/2)==0
-     -(1-mu)*vars(3)/((vars(1)+mu)^2+vars(2)^2+vars(3)^2)^(3/2)-mu*vars(3)/((vars(1)-1+mu)^2+vars(2)^2+vars(3)^2)^(3/2)==0];
+x=vars(1); y=vars(2); z=vars(3);
+
+eqns=[x-(1-mu)*(x+mu)/((x+mu)^2+y^2+z^2)^(3/2)-mu*(x-1+mu)/((x-1+mu)^2+y^2+z^2)^(3/2) == 0
+    
+     y-(1-mu)*y/((x+mu)^2+y^2+z^2)^(3/2)-mu*y/((x-1+mu)^2+y^2+z^2)^(3/2) == 0
+     
+     -(1-mu)*z/((x+mu)^2+y^2+z^2)^(3/2)-mu*z/((x-1+mu)^2+y^2+z^2)^(3/2) == 0];
  
  pts=solve(eqns,vars);
  
